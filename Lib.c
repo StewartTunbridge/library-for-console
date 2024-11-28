@@ -4,6 +4,7 @@
 // -----------------------
 // Author: Stewart Tunbridge, Pi Micros
 // Email:  stewarttunbridge@gmail.com
+// Copyright (c) 2000-2024 Stewart Tunbridge, Pi Micros
 //
 // Maths
 // Strings and Formatting
@@ -1883,37 +1884,53 @@ int StrCompare (char *S1, char *S2)
     return StrCompareCase (S1, S2, true);
   }
 
-int StringArrayAdd (char **StringArray, int Size, char *String)
+void StringArrayPromote (char **StringArray, int Size, int n)
+  {
+    char *SAn;
+    //
+    if (n && (n < Size))
+      {
+        SAn = StringArray [n];
+        while (n)
+          {
+            StringArray [n] = StringArray [n - 1];
+            n--;
+          }
+        StringArray [0] = SAn;
+      }
+  }
+
+void StringArrayAdd (char **StringArray, int Size, char *String)
   {
     int i;
     //
     if (String)
       {
-        // Look for entry already in queue
+        // Look for entry already in list OR empty spot
         i = 0;
         while (true)
           {
-            if (i == Size - 1)
-              break;
-            if (StringArray [i])
-              if (StrCompare (StringArray [i], String) == 0)   // already in list
+            if (i >= Size)   // no room
+              {
+                StrAssign (&StringArray [Size - 1], NULL);   // remove last item
+                StringArrayPromote (StringArray, Size, Size - 1);   // move spot to top
+                StrAssign (&StringArray [0], String);
                 break;
+              }
+            if (StringArray [i] == NULL)   // found an empty spot
+              {
+                StringArrayPromote (StringArray, Size, i);   // move spot to top
+                StrAssign (&StringArray [0], String);
+                break;
+              }
+            if (StrCompare (StringArray [i], String) == 0)   // already in list
+              {
+                StringArrayPromote (StringArray, Size, i);   // move to top
+                break;
+              }
             i++;
           }
-        // discard unwanted
-        if (StringArray [i])
-          StrAssign (&StringArray [i], NULL);
-        // Make space in queue
-        while (i)
-          {
-            StringArray [i] = StringArray [i - 1];
-            i--;
-          }
-        StringArray [0] = NULL;
-        // Place new one on top
-        StrAssign (&StringArray [0], String);
       }
-    return i;
   }
 
 void StringArrayDelete (char **StringArray, int Size, int Index)

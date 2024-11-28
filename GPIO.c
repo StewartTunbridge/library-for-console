@@ -4,6 +4,7 @@
 // -------------------------
 // Author: Stewart Tunbridge, Pi Micros
 // Email:  stewarttunbridge@gmail.com
+// Copyright (c) 2000-2024 Stewart Tunbridge, Pi Micros
 //
 //
 // 02 Sep 2016 - Read Channel Mode

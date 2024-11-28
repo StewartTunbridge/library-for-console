@@ -5,6 +5,7 @@
 //
 // Author: Stewart Tunbridge, Pi Micros
 // Email:  stewarttunbridge@gmail.com
+// Copyright (c) 2000-2024 Stewart Tunbridge, Pi Micros
 //
 // 24 Mar 2017 Sort (sPath): Fix bug
 //  8 Sep 2017 DirEntry: Add SymLinkTarget and fill in ReadDirSearch()

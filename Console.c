@@ -5,6 +5,7 @@
 //
 // Author: Stewart Tunbridge, Pi Micros
 // Email:  stewarttunbridge@gmail.com
+// Copyright (c) 2000-2024 Stewart Tunbridge, Pi Micros
 //
 // Encapsulate ANSI terminal functions for "Visual" console apps.
 //

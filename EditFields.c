@@ -4,6 +4,7 @@
 // -----------
 // Author: Stewart Tunbridge, Pi Micros
 // Email:  stewarttunbridge@gmail.com
+// Copyright (c) 2000-2024 Stewart Tunbridge, Pi Micros
 //
 // Edits a set of parameters
 // Acceps up/down/.. to move between the fields
